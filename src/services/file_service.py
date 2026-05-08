@@ -37,7 +37,7 @@ class FileService:
         except ValueError as exc:
             logger.warning(
                 "Path traversal attempt detected",
-                extra={"filename": filename, "error": str(exc)},
+                extra={"pptx_file": filename, "error": str(exc)},
             )
             raise PresentationNotFoundError(
                 detail="Presentation not found.",
@@ -65,12 +65,12 @@ class FileService:
                     deleted += 1
                     logger.info(
                         "Deleted expired file",
-                        extra={"filename": pptx_file.name, "age_seconds": int(age)},
+                        extra={"pptx_file": pptx_file.name, "age_seconds": int(age)},
                     )
             except OSError as exc:
                 logger.error(
                     "Failed to delete expired file",
-                    extra={"filename": pptx_file.name, "error": str(exc)},
+                    extra={"pptx_file": pptx_file.name, "error": str(exc)},
                 )
 
         return deleted

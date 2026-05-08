@@ -70,7 +70,7 @@ class PresentationService:
 
             logger.info(
                 "Presentation saved",
-                extra={"filename": output_path.name, "slides": len(slides), "theme": theme},
+                extra={"pptx_file": output_path.name, "slides": len(slides), "theme": theme},
             )
 
         except PresentationGenerationError:

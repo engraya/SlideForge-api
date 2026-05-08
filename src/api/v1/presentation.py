@@ -143,7 +143,7 @@ async def download_presentation(
 
     logger.info(
         "Presentation downloaded",
-        extra={"job_id": str(job_id), "filename": stored.filename},
+        extra={"job_id": str(job_id), "pptx_file": stored.filename},
     )
 
     return FileResponse(
@@ -200,7 +200,7 @@ async def _generate_presentation_task(
         )
         logger.info(
             "Background task completed",
-            extra={"job_id": job_id, "filename": filename},
+            extra={"job_id": job_id, "pptx_file": filename},
         )
 
     except SlideForgeError as exc:
