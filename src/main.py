@@ -10,7 +10,7 @@ from slowapi.util import get_remote_address
 
 from src.api.router import api_router
 from src.config import settings
-from src.exceptions import IntelliSlideError
+from src.exceptions import SlideForgeError
 from src.utils.logging import configure_logging, get_logger
 
 logger = get_logger(__name__)
@@ -20,19 +20,19 @@ logger = get_logger(__name__)
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     configure_logging(settings.LOG_LEVEL)
     logger.info(
-        "IntelliSlide AI API starting",
+        "SlideForge AI API starting",
         extra={"environment": settings.ENVIRONMENT, "log_level": settings.LOG_LEVEL},
     )
     settings.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     yield
-    logger.info("IntelliSlide AI API shutting down")
+    logger.info("SlideForge AI API shutting down")
 
 
 def create_app() -> FastAPI:
     limiter = Limiter(key_func=get_remote_address)
 
     app = FastAPI(
-        title="IntelliSlide AI API",
+        title="SlideForge AI API",
         description="Generate PowerPoint presentations from a topic using Google Gemini.",
         version="1.0.0",
         lifespan=lifespan,
@@ -51,9 +51,9 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    @app.exception_handler(IntelliSlideError)
-    async def intellislide_error_handler(
-        request: Request, exc: IntelliSlideError
+    @app.exception_handler(SlideForgeError)
+    async def slideforge_error_handler(
+        request: Request, exc: SlideForgeError
     ) -> JSONResponse:
         logger.error(
             "Application error",

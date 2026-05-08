@@ -26,7 +26,7 @@ class Settings(BaseSettings):
 
     CORS_ORIGINS: list[str] = [
         "http://localhost:3000",
-        "https://intelli-slide-ai.vercel.app",
+        "https://slide-forge123.vercel.app/",
     ]
 
     @field_validator("MAX_SLIDES")

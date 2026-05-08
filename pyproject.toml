@@ -1,5 +1,5 @@
 [project]
-name = "intellislide-ai-api"
+name = "slideforge-ai-api"
 version = "1.0.0"
 description = "AI-powered PowerPoint generation API"
 requires-python = ">=3.12"

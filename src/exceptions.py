@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 
-class IntelliSlideError(Exception):
+class SlideForgeError(Exception):
     status_code: int = 500
     error_code: str = "INTERNAL_ERROR"
 
@@ -13,7 +13,7 @@ class IntelliSlideError(Exception):
         super().__init__(detail)
 
 
-class AIServiceError(IntelliSlideError):
+class AIServiceError(SlideForgeError):
     status_code = 502
     error_code = "AI_SERVICE_ERROR"
 
@@ -23,21 +23,21 @@ class AIParsingError(AIServiceError):
     error_code = "AI_PARSING_ERROR"
 
 
-class PresentationGenerationError(IntelliSlideError):
+class PresentationGenerationError(SlideForgeError):
     status_code = 500
     error_code = "PRESENTATION_GENERATION_ERROR"
 
 
-class PresentationNotFoundError(IntelliSlideError):
+class PresentationNotFoundError(SlideForgeError):
     status_code = 404
     error_code = "PRESENTATION_NOT_FOUND"
 
 
-class RateLimitError(IntelliSlideError):
+class RateLimitError(SlideForgeError):
     status_code = 429
     error_code = "RATE_LIMIT_EXCEEDED"
 
 
-class InputValidationError(IntelliSlideError):
+class InputValidationError(SlideForgeError):
     status_code = 422
     error_code = "INPUT_VALIDATION_ERROR"

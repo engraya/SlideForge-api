@@ -9,7 +9,7 @@ from slowapi.util import get_remote_address
 
 from src.config import settings
 from src.dependencies import get_file_service, get_gemini_provider, get_presentation_service
-from src.exceptions import IntelliSlideError, PresentationNotFoundError
+from src.exceptions import SlideForgeError, PresentationNotFoundError
 from src.schemas.presentation import (
     GenerationStatus,
     PPTRequest,
@@ -203,7 +203,7 @@ async def _generate_presentation_task(
             extra={"job_id": job_id, "filename": filename},
         )
 
-    except IntelliSlideError as exc:
+    except SlideForgeError as exc:
         logger.error(
             "Presentation generation failed",
             extra={
