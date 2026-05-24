@@ -27,7 +27,6 @@ nohup.out
 *.pdb
 
 # VSCode & PyCharm IDE settings
-.vscode/
 .idea/
 
 # Cache & system files
@@ -39,3 +38,7 @@ Thumbs.db
 # Docker
 docker-compose.override.yml
 .envrc
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
